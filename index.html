@@ -1,0 +1,60 @@
+<html>
+    <center>
+<head>
+    <style>
+        h1 {
+  animation: glow 1s infinite alternate;
+}
+@keyframes glow {
+  from { color: white; }
+  to { color: cyan; }
+}
+    body{
+        
+        background-image:url(colors.jpeg);
+        color: white;
+    }
+    </style>
+  <title>Number Guessing Game</title>
+</head>
+
+<body>
+    <br> <br> <br> <br> <br>
+
+  <h1>Guess the Number!</h1>
+  <p>Pick a number between 1 and 100. You get five guesses.</p>
+
+  <input type="number" id="guessInput">
+  <button onclick="checkGuess()">Guess</button>
+
+  <p id="message"></p>
+
+  <script>
+    let guessesLeft = 5;
+    let randomNumber = Math.floor(Math.random() * 100) + 1;
+
+    function checkGuess() {
+  let userGuess = Number(document.getElementById("guessInput").value);
+  let message = document.getElementById("message");
+
+  if (guessesLeft === 0) {
+    message.textContent = "Game over! The number was " + randomNumber;
+    return;
+  }
+
+  guessesLeft--;
+
+  if (userGuess === randomNumber) {
+    message.textContent = "You win!";
+  } else if (guessesLeft === 0) {
+    message.textContent = "Out of guesses! Number was " + randomNumber;
+  } else if (userGuess < randomNumber) {
+    message.textContent = "Too low! Guesses left: " + guessesLeft;
+  } else {
+    message.textContent = "Too high! Guesses left: " + guessesLeft;
+  }
+}
+  </script>
+</body>
+    </center>
+</html>
